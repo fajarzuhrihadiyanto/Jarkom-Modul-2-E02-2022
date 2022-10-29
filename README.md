@@ -209,6 +209,16 @@ $TTL    604800
 www     	IN      CNAME   strix.operation.wise.E02.com.
 ```
 
+lalu, untuk kedua server, buat ubah isi file `/etc/bind/named.conf.options` menjadi seperti berikut
+```
+options {
+        directory "/var/cache/bind";
+        allow-query{any;};
+        auth-nxdomain no;    # conform to RFC1035
+        listen-on-v6 { any; };
+};
+```
+
 lakukan restart dns service pada kedua server. lalu lakukan ping ke operation.wise.e02.com dan juga strix.operation.wise.e02.com
 
 ![06  domain operation wise E02 com](https://user-images.githubusercontent.com/52820619/198819457-96bca30f-15c4-4bc9-8ed1-005a30c72874.png)
