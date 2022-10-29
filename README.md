@@ -109,6 +109,34 @@ Pada client SSS, lakukan ping ke eden.wise.e02.com dan www.eden.wise.e02.com. La
 
 ### Nomor 4
 
+untuk membuat reverse domain dari wise.e02.com, tambahkan code berikut pada file `/etc/bind/named.conf.local`
+```
+zone "2.193.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/wise/2.193.192.in-addr.arpa";
+};
+```
+
+lalu buat file `/etc/bind/wise/2.193.192.in-addr.arpa` dengan isi file
+```
+echo '$TTL    604800
+@       IN      SOA     wise.E02.com. root.wise.E02.com. (
+                     2022102601         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+2.193.192.in-addr.arpa. IN      NS      wise.E02.com.
+2                       IN      PTR     wise.E02.com.
+```
+
+lalu restart bind9 dengan `service bind9 restart`
+
+Pada client SSS, lakuakn perintah berikut `host -t PTR 192.193.2.2` agar mengetahui domain dari ip tersebut, yaitu eise.e02.com
+
+![04  reverse domain wise E02 com](https://user-images.githubusercontent.com/52820619/198819452-393a0718-abac-4881-bfab-1dbf2b39a3e3.png)
+
 ### Nomor 5
 
 ### Nomor 6
