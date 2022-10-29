@@ -307,6 +307,20 @@ pada klien, coba akses path asal dari server eden.wise.e02.com, misalnya eden.wi
 ![12  custom 404 error](https://user-images.githubusercontent.com/52820619/198819467-6106cdd0-504c-4dbc-854f-343a71b3b1a0.png)
 
 ### Nomor 13
+untuk membuat alias /js agar dapat mengakses /public/js, maka tambahkan code berikut pada `/etc/apache2/sites-available/eden.wise.E02.com.conf`
+```
+<VirtualHost *:80>
+	...
+	<Directory /var/www/eden.wise.E02.com/public/js>
+     		Options +Indexes
+ 	</Directory>
+ 
+	Alias "/js" "/var/www/eden.wise.E02.com/public/js"
+	...
+</VirtualHost>
+```
+
+lalu pada klien, lakukan akses dengan perintah `lynx eden.wise.e02.com/js`
 ![13 a  virtual host js](https://user-images.githubusercontent.com/52820619/198819472-35206f86-c085-4abd-83c4-215db5268988.png)
 ![13 b  virtual host js](https://user-images.githubusercontent.com/52820619/198819475-20ddb516-6d88-4285-9097-cdba1e2b96b1.png)
 
