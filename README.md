@@ -273,6 +273,9 @@ lalu, pada client sss, coba untuk mengakses wise.e02.com/home, maka akan tetap t
 ![09  wise E02 com home](https://user-images.githubusercontent.com/52820619/198819461-407d7ce3-4913-4a6f-a7e1-47c9f4c647a0.png)
 
 ### Nomor 10
+pada server eden, lakukan hal yang sama dengan nomor 8, namun dengan domain yang disesuaikan menjadi `eden.wise.E02.com`, dan url untuk kontennya yaitu https://drive.google.com/uc?export=download&id=1q9g6nM85bW5T9f5yoyXtDqonUKKCHOTV
+
+setelah itu, lakukan pengecekan melalui client sss dengan perintah `lynx eden.wise.e02.com`
 ![10  web eden wise E02 com](https://user-images.githubusercontent.com/52820619/198819463-170503f4-06d3-4a80-b73e-396a25a669eb.png)
 
 ### Nomor 11
