@@ -331,6 +331,14 @@ lakukan hal yang sama pada nomor 8, namun sesuaikan domain menjadi `strix.operat
 	...
 ```
 
+lalu, tambahkan code berikut pada `/etc/apache2/ports.conf`
+```
+...
+Listen 15000
+Listen 15500
+...
+```
+
 lalu untuk konten dapat didownload pada link berikut https://drive.google.com/uc?export=download&id=1bgd3B6VtDtVv2ouqyM8wLyZGzK5C9maT
 
 pada klien, berikut ini ketika user mencoba mengakses strix.operation.wise.e02.com dengan port default 80
@@ -344,6 +352,19 @@ berikut ketika user mencoba mengakses strix.operation.wise.e02.com dengan port 1
 ![14 c  enable 15500](https://user-images.githubusercontent.com/52820619/198819479-af563426-5da0-4838-b38a-ee033db47dde.png)
 
 ### Nomor 15
+untuk menambah basic authentication dengan user Twilight dan password opStrix, lakukan perintah berikut
+`htpasswd -c -b /etc/apache2/.htpasswd Twilight opStrix`
+
+lalu tambahkan code berikut pada file `/etc/apache2/sites-available/strix.operation.wise.E02.com.conf`
+```
+<Directory "/var/www/strix.operation.wise.E02.com">
+      	AuthType Basic
+      	AuthName "Restricted Content"
+      	AuthUserFile /etc/apache2/.htpasswd
+      	Require valid-user
+</Directory>
+```
+lakukan restart pada apache, lalu akses strix.operation.wise.e02.com:15000 melalui client sss, maka akan diminta memasukkan username dan password seperti pada gambar di nomor 14. Setelah berhasil memasukkan username dan password, maka website baru dapat diakses
 ![15  auth](https://user-images.githubusercontent.com/52820619/198819480-e602c421-2b38-4140-bda4-f954036928e1.png)
 
 ### Nomor 16
