@@ -98,7 +98,7 @@ $TTL    604800
 @         IN      NS      eden.wise.E02.com.
 @         IN      A       192.193.3.3
 www       IN      CNAME   eden.wise.E02.com.
-@    
+@         IN      AAAA    ::1 
 ```
 
 lalu restart bind9 dengan `service bind9 restart`
