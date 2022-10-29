@@ -368,6 +368,14 @@ lakukan restart pada apache, lalu akses strix.operation.wise.e02.com:15000 melal
 ![15  auth](https://user-images.githubusercontent.com/52820619/198819480-e602c421-2b38-4140-bda4-f954036928e1.png)
 
 ### Nomor 16
+
+agar setiap kali akses ip eden langsung dialihkan ke eden.wise.e02.com, maka tambakan code berikut pada ``
+```
+RewriteEngine On
+RewriteCond %{HTTP_HOST} !^eden.wise.e02.com$
+RewriteRule /.* http://eden.wise.e02.com/ [R]
+```
+
 ![16 a  access ip](https://user-images.githubusercontent.com/52820619/198819481-3c1188cb-4e41-4d26-b949-0f38beade5a5.png)
 ![16 b  access ip](https://user-images.githubusercontent.com/52820619/198819482-fc917734-2eda-4031-bfec-260b9ce60963.png)
 
