@@ -261,6 +261,15 @@ pada client, setelah dilakukan instalasi lynx dengan perintah `apt-get install l
 ![08  web wise E02 com](https://user-images.githubusercontent.com/52820619/198819460-b2b43599-aa58-4ec9-9c3e-371f49ed1d7e.png)
 
 ### Nomor 9
+untuk menambahkan alias path /home agar mengakses file index.php, tambahkan line berikut pada file `/etc/apache2/sites-available/wise.E02.com.conf`
+```
+<VirtualHost *:80>
+	...
+	Alias "/home" "/var/www/wise.E02.com/index.php"
+	...
+</VirtualHost>
+```
+lalu, pada client sss, coba untuk mengakses wise.e02.com/home, maka akan tetap terbuka indexnya seperti pada gambar sebelumnya
 ![09  wise E02 com home](https://user-images.githubusercontent.com/52820619/198819461-407d7ce3-4913-4a6f-a7e1-47c9f4c647a0.png)
 
 ### Nomor 10
