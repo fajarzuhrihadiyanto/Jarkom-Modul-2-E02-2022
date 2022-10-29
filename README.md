@@ -279,9 +279,31 @@ setelah itu, lakukan pengecekan melalui client sss dengan perintah `lynx eden.wi
 ![10  web eden wise E02 com](https://user-images.githubusercontent.com/52820619/198819463-170503f4-06d3-4a80-b73e-396a25a669eb.png)
 
 ### Nomor 11
+masih di server eden, untuk melakukan directory listing pada /public, tambahkan code berikut pada file `/etc/apache2/sites-available/eden.wise.E02.com.conf`
+```
+<VirtualHost *:80>
+	...
+	<Directory /var/www/eden.wise.E02.com/public>
+     		Options +Indexes
+ 	</Directory>
+	...
+</VirtualHost>
+```
+
+setelah itu restart apache dengan perintah `service apache2 restart`. lalu pada klien, akses eden.wise.e02.com/public
 ![11  eden wise E02 com public](https://user-images.githubusercontent.com/52820619/198819464-78680685-dc6c-4b54-be18-53232b5f2b6c.png)
 
 ### Nomor 12
+untuk menambah custom error 404, tambahkan line berikut pada file `/etc/apache2/sites-available/eden.wise.E02.com.conf`
+```
+<VirtualHost *:80>
+	...
+	ErrorDocument 404 /error/404.html
+	...
+</VirtualHost>
+```
+
+pada klien, coba akses path asal dari server eden.wise.e02.com, misalnya eden.wise.e02.com/aaaaa, maka akan muncul tampilan 404 yang bukan defaultnya
 ![12  custom 404 error](https://user-images.githubusercontent.com/52820619/198819467-6106cdd0-504c-4dbc-854f-343a71b3b1a0.png)
 
 ### Nomor 13
