@@ -158,10 +158,60 @@ zone "wise.E02.com" {
 ![05 a  stop master DNS](https://user-images.githubusercontent.com/52820619/198819454-05cf4ede-15dd-4aa7-8c4b-1a63600c8165.png)
 ![05 b  test ping DNS](https://user-images.githubusercontent.com/52820619/198819455-a271ad0f-9010-4ac6-b5ff-f61ed4b30914.png)
 
-### Nomor 6
-![06  domain operation wise E02 com](https://user-images.githubusercontent.com/52820619/198819457-96bca30f-15c4-4bc9-8ed1-005a30c72874.png)
+### Nomor 6 dan 7
+untuk menambahkan subdomain operation dan strix.operation, pada server wise, tambahkan code berikut pada file `/etc/bind/wise/wise.E02.com`
+```
+ns1       IN      A       192.193.3.2
+ns2	    IN	A	  192.193.3.2
+operation IN      NS      ns1
+strix.operation	IN	NS	ns2
+```
 
-### Nomor 7
+lalu pada server berlint, tambahkan code berikut pada `/etc/bind/named.conf.local`
+```
+zone "operation.wise.E02.com" {
+    type master;
+    file "/etc/bind/operation/operation.wise.E02.com";
+};
+
+zone "strix.operation.wise.E02.com" {
+    type master;
+    file "/etc/bind/operation/strix.operation.wise.E02.com";
+};
+```
+
+masih di server berlint, untuk konfigurasi operation.wise.e02.com, buat file `/etc/bind/operation/operation.wise.e02.com` dengan isi sebagai berikut
+```
+$TTL    604800
+@       IN      SOA     operation.wise.E02.com. root.operation.wise.E02.com. (
+                     2022102601         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       	IN      NS      operation.wise.E02.com.
+@       	IN      A       192.193.3.3
+www     	IN      CNAME   operation.wise.E02.com.
+```
+untuk konfigurasi strix.operation.wise.e02.com, buat juga file `/etc/bind/operation/strix.operation.wise.e02.com` dengan isi sebagai berikut
+```
+$TTL    604800
+@       IN      SOA     strix.operation.wise.E02.com. root.strix.operation.wise.E02.com. (
+                     2022102601         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       	IN      NS      strix.operation.wise.E02.com.
+@       	IN      A       192.193.3.3
+www     	IN      CNAME   strix.operation.wise.E02.com.
+```
+
+lakukan restart dns service pada kedua server. lalu lakukan ping ke operation.wise.e02.com dan juga strix.operation.wise.e02.com
+
+![06  domain operation wise E02 com](https://user-images.githubusercontent.com/52820619/198819457-96bca30f-15c4-4bc9-8ed1-005a30c72874.png)
 ![07  domain strix operation wise E02 com](https://user-images.githubusercontent.com/52820619/198819458-1ef21a8b-48fb-4474-ad87-40352f60b712.png)
 
 ### Nomor 8
