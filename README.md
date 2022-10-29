@@ -46,6 +46,35 @@ berikut ini hasilnya
 ![01 f  garden ping](https://user-images.githubusercontent.com/52820619/198819446-7ec4f6b9-56c2-4c16-bb64-e89d41fa23d4.png)
 
 ### Nomor 2
+Pada server wise, Setelah melakukan instalasi bind9 dengan perintah `apt-get install bind9 -y`. lakukan konfigurasi pada file `/ect/bind/named.conf.local` dan isi sebagai berikut
+```
+zone "wise.E02.com" {
+    type master;
+    file "/etc/bind/wise/wise.E02.com";
+};
+```
+
+lalu buat file `/etc/bind/wise/wise.E02.com` dengan isi sebagai berikut
+```
+$TTL    604800
+@       IN      SOA     wise.E02.com. root.wise.E02.com. (
+                     2022102601         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@         IN      NS      wise.E02.com.
+@         IN      A       192.193.2.2
+www       IN      CNAME   wise.E02.com.
+@         IN      AAAA    ::1
+```
+
+lalu restart bind9 dengan `service bind9 restart`
+
+Pada client SSS, lakukan ping ke wise.e02.com dan www.wise.e02.com. Lalu untuk melakukan pengecekan alias, ketikkan `host -t CNAME www.wise.e02.com`.
+
+![02  domain wise E02 com](https://user-images.githubusercontent.com/52820619/198819448-0fac5f6a-b70a-4a65-a88e-e45628a8b805.png)
 
 ### Nomor 3
 
