@@ -325,8 +325,22 @@ lalu pada klien, lakukan akses dengan perintah `lynx eden.wise.e02.com/js`
 ![13 b  virtual host js](https://user-images.githubusercontent.com/52820619/198819475-20ddb516-6d88-4285-9097-cdba1e2b96b1.png)
 
 ### Nomor 14
+lakukan hal yang sama pada nomor 8, namun sesuaikan domain menjadi `strix.operation.wise.e02.com`, lalu pada file `/etc/apache2/sites-available/strix.operation.wise.e02.com.conf`, pada baris awal, ubah port 80 menjadi 15000 dan 15500 dengan line sebagai berikut
+```
+<VirtualHost *:15000 *:15500>
+	...
+```
+
+lalu untuk konten dapat didownload pada link berikut https://drive.google.com/uc?export=download&id=1bgd3B6VtDtVv2ouqyM8wLyZGzK5C9maT
+
+pada klien, berikut ini ketika user mencoba mengakses strix.operation.wise.e02.com dengan port default 80
+
 ![14 a  disable port 80](https://user-images.githubusercontent.com/52820619/198819476-fa5827c8-3c9a-4e58-b4b0-bda64df7a17a.png)
+
+berikut ketika user mencoba mengakses strix.operation.wise.e02.com dengan port 15000
 ![14 b  enable port 15000](https://user-images.githubusercontent.com/52820619/198819477-503f582e-3f13-4d96-9c19-8679d39cec18.png)
+
+berikut ketika user mencoba mengakses strix.operation.wise.e02.com dengan port 15500
 ![14 c  enable 15500](https://user-images.githubusercontent.com/52820619/198819479-af563426-5da0-4838-b38a-ee033db47dde.png)
 
 ### Nomor 15
