@@ -380,5 +380,25 @@ RewriteRule /.* http://eden.wise.e02.com/ [R]
 ![16 b  access ip](https://user-images.githubusercontent.com/52820619/198819482-fc917734-2eda-4031-bfec-260b9ce60963.png)
 
 ### Nomor 17
+buat file `/var/www/eden.wise.E02.com/.htaccess` dengan isi sebagai berikut
+```
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/public/images/(.*)eden(.*)
+RewriteCond %{REQUEST_URI} !/public/images/eden.png
+RewriteRule /.* http://eden.wise.e02.com/public/images/eden.png [L]
+```
+
+lalu tambahkan code berikut pada `/etc/apache2/sites-available/eden.wise.e02.com.conf`
+```
+<VirtualHost *:80>
+	...
+	<Directory /var/www/eden.wise.e02.com>
+                Options +FollowSymLinks -Multiviews
+                AllowOverride All
+        </Directory>
+	...
+</VirtualHost>
+```
+
 ![17 a  rewrite](https://user-images.githubusercontent.com/52820619/198819483-999bef86-aba0-400c-9d1c-09602ff583aa.png)
 ![17 b  download or cancel](https://user-images.githubusercontent.com/52820619/198819484-6a60bbf2-376c-43f8-9101-91f800d5ae5c.png)
