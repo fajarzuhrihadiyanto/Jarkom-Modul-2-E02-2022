@@ -225,6 +225,39 @@ lakukan restart dns service pada kedua server. lalu lakukan ping ke operation.wi
 ![07  domain strix operation wise E02 com](https://user-images.githubusercontent.com/52820619/198819458-1ef21a8b-48fb-4474-ad87-40352f60b712.png)
 
 ### Nomor 8
+pada server wise, lakukan instalasi pada beberapa package dengan perintah berikut
+```
+apt-get install unzip -y
+apt-get install ca-certificates -y
+apt-get install apache2 -y
+apt-get install php -y
+apt-get install libapache2-mod-php7.0 -y
+```
+buat file `/etc/apache2/sites-available/wise.E02.com.conf` dengan isi sebagai berikut
+```
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/wise.E02.com
+	  ServerName wise.E02.com
+	  ServerAlias www.wise.E02.com
+
+	  ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+```
+
+setelah itu, lakukan enable site dengan eprintah `a2ensite wise.E02.com`, lalu restart apache2 dengan perintah `service apache2 restart`
+
+untuk konten webnya, lakukan download dari link yang telah disediakan lalu simpan di storage dengan perintah `curl -L "https://drive.google.com/uc?export=download&id=1S0XhL9ViYN7TyCj2W66BNEXQD2AAAw2e" > ~/file.zip`
+
+lalu, unzip file yang telah didownload tadi dengan perintah `unzip ~/file.zip -d /var/www`
+
+setelah itu rename nama foldernya dari wise menjadi wise.e02.com dengan perintah `mv /var/www/wise /var/www/wise.E02.com`
+
+pada client, setelah dilakukan instalasi lynx dengan perintah `apt-get install lynx`, buka wise.e02.com menggunakan lynx dengan peirntah `lynx wise.e02.com`
+
 ![08  web wise E02 com](https://user-images.githubusercontent.com/52820619/198819460-b2b43599-aa58-4ec9-9c3e-371f49ed1d7e.png)
 
 ### Nomor 9
