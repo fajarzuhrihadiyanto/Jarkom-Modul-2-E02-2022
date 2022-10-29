@@ -139,26 +139,62 @@ Pada client SSS, lakuakn perintah berikut `host -t PTR 192.193.2.2` agar mengeta
 
 ### Nomor 5
 
+untuk membuat dns slave, pertama lakukan sedikit konfigurasi tambahan pada master dns, yaitu wise dengan menambahkan beberapa line pada zone dari file `/etc/bind/named.conf.local`
+```
+notify yes;
+also-notify {192.193.3.2;};
+allow-transfer {192.193.3.2;};
+```
+
+lalu, pada slave dns server, setelah diinstall bind9, lakuakn ko0nfigurasi pada `/etc/bind/named.conf.local` dengan isi sebagai berikut
+```
+zone "wise.E02.com" {
+    type slave;
+    masters {192.193.2.2;};
+    file "/var/lib/bind/wise.E02.com";
+};
+```
+ lalu restart bind9 pada kedua server dengan `service bind9 restart`. UNtuk melakukan pengujian, matikan dns server pada wise dengan perintah `service bind9 stop`. lalu lakukan ping ke wise.e02.com
+![05 a  stop master DNS](https://user-images.githubusercontent.com/52820619/198819454-05cf4ede-15dd-4aa7-8c4b-1a63600c8165.png)
+![05 b  test ping DNS](https://user-images.githubusercontent.com/52820619/198819455-a271ad0f-9010-4ac6-b5ff-f61ed4b30914.png)
+
 ### Nomor 6
+![06  domain operation wise E02 com](https://user-images.githubusercontent.com/52820619/198819457-96bca30f-15c4-4bc9-8ed1-005a30c72874.png)
 
 ### Nomor 7
+![07  domain strix operation wise E02 com](https://user-images.githubusercontent.com/52820619/198819458-1ef21a8b-48fb-4474-ad87-40352f60b712.png)
 
 ### Nomor 8
+![08  web wise E02 com](https://user-images.githubusercontent.com/52820619/198819460-b2b43599-aa58-4ec9-9c3e-371f49ed1d7e.png)
 
 ### Nomor 9
+![09  wise E02 com home](https://user-images.githubusercontent.com/52820619/198819461-407d7ce3-4913-4a6f-a7e1-47c9f4c647a0.png)
 
 ### Nomor 10
+![10  web eden wise E02 com](https://user-images.githubusercontent.com/52820619/198819463-170503f4-06d3-4a80-b73e-396a25a669eb.png)
 
 ### Nomor 11
+![11  eden wise E02 com public](https://user-images.githubusercontent.com/52820619/198819464-78680685-dc6c-4b54-be18-53232b5f2b6c.png)
 
 ### Nomor 12
+![12  custom 404 error](https://user-images.githubusercontent.com/52820619/198819467-6106cdd0-504c-4dbc-854f-343a71b3b1a0.png)
 
 ### Nomor 13
+![13 a  virtual host js](https://user-images.githubusercontent.com/52820619/198819472-35206f86-c085-4abd-83c4-215db5268988.png)
+![13 b  virtual host js](https://user-images.githubusercontent.com/52820619/198819475-20ddb516-6d88-4285-9097-cdba1e2b96b1.png)
 
 ### Nomor 14
+![14 a  disable port 80](https://user-images.githubusercontent.com/52820619/198819476-fa5827c8-3c9a-4e58-b4b0-bda64df7a17a.png)
+![14 b  enable port 15000](https://user-images.githubusercontent.com/52820619/198819477-503f582e-3f13-4d96-9c19-8679d39cec18.png)
+![14 c  enable 15500](https://user-images.githubusercontent.com/52820619/198819479-af563426-5da0-4838-b38a-ee033db47dde.png)
 
 ### Nomor 15
+![15  auth](https://user-images.githubusercontent.com/52820619/198819480-e602c421-2b38-4140-bda4-f954036928e1.png)
 
 ### Nomor 16
+![16 a  access ip](https://user-images.githubusercontent.com/52820619/198819481-3c1188cb-4e41-4d26-b949-0f38beade5a5.png)
+![16 b  access ip](https://user-images.githubusercontent.com/52820619/198819482-fc917734-2eda-4031-bfec-260b9ce60963.png)
 
 ### Nomor 17
+![17 a  rewrite](https://user-images.githubusercontent.com/52820619/198819483-999bef86-aba0-400c-9d1c-09602ff583aa.png)
+![17 b  download or cancel](https://user-images.githubusercontent.com/52820619/198819484-6a60bbf2-376c-43f8-9101-91f800d5ae5c.png)
