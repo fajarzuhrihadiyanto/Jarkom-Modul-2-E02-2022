@@ -96,7 +96,7 @@ $TTL    604800
                          604800 )       ; Negative Cache TTL
 ;
 @         IN      NS      eden.wise.E02.com.
-@         IN      A       192.193.3.2
+@         IN      A       192.193.3.3
 www       IN      CNAME   eden.wise.E02.com.
 @    
 ```
