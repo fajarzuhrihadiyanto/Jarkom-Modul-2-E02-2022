@@ -78,6 +78,35 @@ Pada client SSS, lakukan ping ke wise.e02.com dan www.wise.e02.com. Lalu untuk m
 
 ### Nomor 3
 
+Sama halnya pada nomor2, tambahkan code berikut pada file `/etc/bind/named.conf.local`
+```
+zone "eden.wise.E02.com" {
+    type master;
+    file "/etc/bind/wise/eden.wise.E02.com";
+};
+```
+lalu buat file `/etc/bind/wise/eden.wise.E02.com` dengan isi sebagai berikut
+```
+$TTL    604800
+@       IN      SOA     eden.wise.E02.com. eden.root.wise.E02.com. (
+                     2022102601         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@         IN      NS      eden.wise.E02.com.
+@         IN      A       192.193.3.2
+www       IN      CNAME   eden.wise.E02.com.
+@    
+```
+
+lalu restart bind9 dengan `service bind9 restart`
+
+Pada client SSS, lakukan ping ke eden.wise.e02.com dan www.eden.wise.e02.com. Lalu untuk melakukan pengecekan alias, ketikkan `host -t CNAME www.eden.wise.e02.com`.
+
+![03  domain eden wise E02 com](https://user-images.githubusercontent.com/52820619/198819451-f17eda21-80aa-4b42-8bc4-7928ea07d58f.png)
+
 ### Nomor 4
 
 ### Nomor 5
