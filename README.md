@@ -1,8 +1,8 @@
 # Laporan Resmi Praktikum Jaringan Komputer Modul 2
 
 ## Anggota Kelompok
-- 5025201248 - Fajar Zuhri Hadiyanto
-- 5025201047 - Sidrotul Munawaroh
+- 5025201248 - Fajar Zuhri Hadiyanto - pengerjaan bagian web server
+- 5025201047 - Sidrotul Munawaroh - pengerjaan bagian topologi, config ip, dan dns server
 
 ## Layout
 ![00  topologi](https://user-images.githubusercontent.com/52820619/198819430-816ac5cf-4827-4b1f-a61a-8b89ddaa56ce.png)
